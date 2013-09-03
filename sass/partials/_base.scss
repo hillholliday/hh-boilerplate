@@ -4,7 +4,6 @@
 
 @import "compass/reset";
 @import "bourbon/bourbon";
-@import "partials/base";
 
 /*//////////////////////////////////////
 //  colors
@@ -20,10 +19,56 @@ $font-serif: georgia;
 //  extension on skeleton
 //////////////////////////////////////*/
 
+$width: 60rem;
+
+*{
+    @include box-sizing(border-box);
+}
+
+.block{
+    @extend %block;
+    @include clearfix;
+}
+
 /*//////////////////////////////////////
 //  mixins
 //////////////////////////////////////*/
 
+@mixin font-size($size, $line-spacing: 1.3, $letter-spacing: .09){
+    font-size:($size*$font-size) + px;
+    line-height:($size*$line-spacing) + px;
 
+    font-size:($size) + rem;
+    line-height:($size*$line-spacing) + rem;
+    // letter-spacing:($letter-spacing) + rem;
+}
+
+@mixin input-placeholder {
+    @if $experimental-support-for-webkit {
+        &::-webkit-input-placeholder { @content; }
+    }
+    @if $experimental-support-for-mozilla {
+        &:-moz-placeholder { @content; }
+    }
+    @if $experimental-support-for-microsoft {
+        &:-ms-input-placeholder { @content; }
+    }
+}
+
+/*//////////////////////////////////////
+//  silent classes
+//////////////////////////////////////*/
+
+%block{
+    max-width:$width;
+    width:100%;
+    margin:0 auto;
+    display:block;
+}
+
+%marpad{
+    padding:0;
+    margin:0;
+}
 
 
