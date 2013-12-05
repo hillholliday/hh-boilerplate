@@ -3,6 +3,7 @@
 //////////////////////////////////////*/
 
 @import "compass/reset";
+@import "compass/css3";
 @import "bourbon/bourbon";
 @import "neat/neat";
 
@@ -19,7 +20,7 @@ $font-serif: georgia;
 /*//////////////////////////////////////
 //  extension on skeleton
 //////////////////////////////////////*/
-
+$grid-columns: 10;
 $width: 60rem;
 
 *{
@@ -56,6 +57,21 @@ $width: 60rem;
     }
 }
 
+@mixin animation($params) {
+    -webkit-animation:$params;
+    -moz-animation:$params;
+    -ms-animation:$params;
+    animation:$params;
+}
+
+@mixin keyframes($name) {
+    @-webkit-keyframes $name { @content }
+    @-moz-keyframes    $name { @content }
+    @-ms-keyframes     $name { @content }
+    @keyframes         $name { @content }
+}
+
+
 /*//////////////////////////////////////
 //  silent classes
 //////////////////////////////////////*/
@@ -72,4 +88,8 @@ $width: 60rem;
     margin:0;
 }
 
+body,html{
+    display:block;
+    height:100%;
+}
 
