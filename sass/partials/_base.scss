@@ -88,6 +88,11 @@ $width: 60rem;
     margin:0;
 }
 
+%cover{
+    background-size: cover;
+    -ms-behavior: url(/js/vendor/backgroundsize.min.htc);
+}
+
 body,html{
     display:block;
     height:100%;
