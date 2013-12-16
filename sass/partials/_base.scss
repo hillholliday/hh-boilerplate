@@ -22,6 +22,8 @@ $font-serif: georgia;
 //////////////////////////////////////*/
 $grid-columns: 10;
 $width: 60rem;
+$font-size:10;
+$paragraph-size:1.6;
 
 *{
     @include box-sizing(border-box);
@@ -30,6 +32,22 @@ $width: 60rem;
 .block{
     @extend %block;
     @include clearfix;
+}
+
+.disable-hover{
+    pointer-events:none;
+}
+
+b,strong{
+    font-weight:600;
+}
+
+i,em{
+    font-style:italic;
+}
+
+input:focus, textarea:focus{
+    outline:none;
 }
 
 /*//////////////////////////////////////
@@ -96,5 +114,10 @@ $width: 60rem;
 body,html{
     display:block;
     height:100%;
+}
+
+body{
+    font-size:62.5%;
+    position:relative;
 }
 
