@@ -23,7 +23,7 @@ module.exports = function(grunt) {
               'img/main.js': ['js/vendor/**/*.js', 'js/main.js']
             }
           }
-        
+
       },
 
       // image optimazations
@@ -105,8 +105,12 @@ module.exports = function(grunt) {
 
       watch: {
             src: {
-              files: ['js/*.js', 'sass/*.scss', 'src-img/**/*.jpg','src-img/**/*.jpg','src-img/**/*.gif','src-img/**/*.svg'],
-              tasks: ['build']
+              files: ['js/*.js', 'sass/*.scss', 'src-img/**/*.jpg','src-img/**/*.jpg','src-img/**/*.gif','src-img/**/*.svg','**/*.html'],
+              tasks: ['build'],
+              options: {
+                livereload : true,
+                spawn: false
+              },
             },
         }
   });
