@@ -28,9 +28,26 @@ module.exports = function(grunt) {
         },
       },
 
+      htmlmin: {                                     // Task
+        dev: {                                       // Another target
+          files: {
+            'html/index.html': 'build/index.html',
+          },
+        },
+        prod: {                                      // Target
+          options: {                                 // Target options
+            removeComments: true,
+            collapseWhitespace: true
+          },
+          files: {                                   // Dictionary of files
+            'html/index.hml': 'build/index.html',
+          },
+        },
+      },
+
       // image optimazations
       imagemin: {                          // Task
-        dynamic: {                         // Another target
+        dev: {                         // Another target
           options: {                       // Target options
             optimizationLevel: 1,
             pngquant: true
@@ -63,7 +80,7 @@ module.exports = function(grunt) {
                 removeViewBox: false
             }]
         },
-        dist: {                     // Target
+        dev: {                     // Target
             files: [{               // Dictionary of files
                 expand: true,       // Enable dynamic expansion.
                 cwd: 'src-img/',     // Src matches are relative to this path.
@@ -101,38 +118,40 @@ module.exports = function(grunt) {
                 relaxerror: ["Bad value X-UA-Compatible for attribute http-equiv on element meta."]
         },
         files: {
-                src: ['**/*.html','! node_modules/**/*.html']
+                src: ['html/**/*.html','! node_modules/**/*.html']
         }
       },
 
       watch: {
-            src: {
-              files: ['build/js/*.js', 'build/sass/*.scss', 'build/img/**/*.jpg','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg','**/*.html'],
-              tasks: ['build'],
-              options: {
-                livereload : true,
-                spawn: false
-              },
+          src: {
+            files: ['build/js/*.js', 'build/sass/*.scss', 'build/img/**/*.jpg','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg','build/**/*.html'],
+            tasks: ['build'],
+            options: {
+              livereload : true,
+              spawn: false
             },
-        }
+          },
+      }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-html-validation');
   grunt.loadNpmTasks('grunt-svgmin');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
   // Default tasks
-  grunt.registerTask('build', ['imagemin','svgmin','jshint','uglify:dev','compass']);
-  grunt.registerTask('prod', ['imagemin','svgmin','cssmin', 'uglify:prod']);
+  grunt.registerTask('build', ['jshint','uglify:dev','htmlmin:dev','compass']);
+  grunt.registerTask('prod', ['imagemin','svgmin','compass','cssmin','uglify:prod','htmlmin:prod']);
 
   // Custom tasks
   grunt.registerTask("validate", ['validation']);
+  grunt.registerTask("img", ['imagemin','svgmin'])
 
 
   // run grunt watch to run build every time a file changes
