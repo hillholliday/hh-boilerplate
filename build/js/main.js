@@ -10,6 +10,6 @@ $(function(){
 		}
 		timer = setTimeout(function(){
 			body.removeClass('disable-hover');
-		},250);
+		}, 250);
 	}, false);
 });

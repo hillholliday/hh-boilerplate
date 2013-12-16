@@ -3,27 +3,29 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-      // uglify: {
-      //   options: {
-      //     banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-      //   },
-      //   build: {
-      //     src: 'js/<%= pkg.name %>.js',
-      //     dest: 'build/<%= pkg.name %>.min.js'
-      //   }
-      // }
 
       uglify: {
+        dev: {
           options: {
             beautify: true,
             mangle: false
           },
-          my_target: {
-            files: {
-              'img/main.js': ['js/vendor/**/*.js', 'js/main.js']
+          files: {
+            "html/js/main.js": "build/js/main.js"
+          },
+        },
+        prod: {
+          options: {
+            beautify: true,
+            banner: '/*! last updated <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+            mangle: {
+              except:['jQuery'],
             }
-          }
-
+          },
+          files: {
+            "html/js/main.js": "build/js/main.js"
+          },
+        },
       },
 
       // image optimazations
@@ -35,15 +37,15 @@ module.exports = function(grunt) {
           },
           files: [{
             expand: true,                  // Enable dynamic expansion
-            cwd: 'src-img/',                   // Src matches are relative to this path
+            cwd: 'build/img',                   // Src matches are relative to this path
             src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
-            dest: 'img/'                  // Destination path prefix
+            dest: 'html/img/'                  // Destination path prefix
           }]
         }
       },
 
       jshint: {
-        files: ['js/*.js'],
+        files: ['build/js/*.js'],
         options: {
           curly: true,
           eqeqeq: true,
@@ -79,7 +81,7 @@ module.exports = function(grunt) {
             banner: '/* updated <%= grunt.template.today("yyyy-mm-dd") %> */'
           },
           files: {
-            'stylesheets/screen.css': ['stylesheets/*.css']
+            'html/stylesheets/screen.css': ['stylesheets/*.css']
           }
         }
       },
@@ -105,7 +107,7 @@ module.exports = function(grunt) {
 
       watch: {
             src: {
-              files: ['js/*.js', 'sass/*.scss', 'src-img/**/*.jpg','src-img/**/*.jpg','src-img/**/*.gif','src-img/**/*.svg','**/*.html'],
+              files: ['build/js/*.js', 'build/sass/*.scss', 'build/img/**/*.jpg','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg','**/*.html'],
               tasks: ['build'],
               options: {
                 livereload : true,
@@ -126,8 +128,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-svgmin');
 
   // Default tasks
-  grunt.registerTask('build', ['imagemin','svgmin','jshint','compass']);
-  grunt.registerTask('prod', ['imagemin','svgmin','cssmin']);
+  grunt.registerTask('build', ['imagemin','svgmin','jshint','uglify:dev','compass']);
+  grunt.registerTask('prod', ['imagemin','svgmin','cssmin', 'uglify:prod']);
 
   // Custom tasks
   grunt.registerTask("validate", ['validation']);
