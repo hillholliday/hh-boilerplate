@@ -124,7 +124,7 @@ module.exports = function(grunt) {
 
       watch: {
           src: {
-            files: ['build/js/*.js', 'build/sass/*.scss', 'build/img/**/*.jpg','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg','build/**/*.html'],
+            files: ['build/js/*.js', 'build/sass/*.scss', 'build/img/**/*.png','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg','build/**/*.html'],
             tasks: ['build'],
             options: {
               livereload : true,
@@ -146,12 +146,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
   // Default tasks
-  grunt.registerTask('build', ['jshint','uglify:dev','htmlmin:dev','compass']);
+  grunt.registerTask('build', ['jshint','uglify:dev','imagemin','svgmin','htmlmin:dev','compass']);
   grunt.registerTask('prod', ['imagemin','svgmin','compass','cssmin','uglify:prod','htmlmin:prod']);
 
   // Custom tasks
   grunt.registerTask("validate", ['validation']);
-  grunt.registerTask("img", ['imagemin','svgmin'])
+  grunt.registerTask("img", ['imagemin','svgmin']);
 
 
   // run grunt watch to run build every time a file changes
