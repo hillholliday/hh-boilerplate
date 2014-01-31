@@ -82,6 +82,11 @@ input:focus, textarea:focus{
     animation:$params;
 }
 
+@mixin background-opacity($color, $opacity: 0.3){
+    background: $color;
+    background: rgba($color, $opacity);
+}
+
 @mixin keyframes($name) {
     @-webkit-keyframes $name { @content }
     @-moz-keyframes    $name { @content }
