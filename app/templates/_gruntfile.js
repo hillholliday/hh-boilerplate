@@ -123,40 +123,56 @@ module.exports = function(grunt) {
       },
 
       watch: {
-          src: {
-            files: ['build/js/*.js', 'build/sass/*.scss', 'build/img/**/*.png','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg','build/**/*.html'],
-            tasks: ['build'],
-            options: {
-              livereload : true,
-              spawn: false
-            },
+        set1: {
+          files: ['build/js/*.js', 'build/sass/**/*.scss', 'build/img/**/*.png','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg','build/**/*.html'],
+          tasks: ['build'],
+          options: {
+            livereload : true,
+            spawn: false
           },
+        },
+        set2:{
+          files: ['build/img/**/*.png','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg'],
+          tasks: ['images'],
+          options: {
+            livereload : true,
+            spawn: false
+          },
+        },
       }
   });
 
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-html-validation');
-  grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-newer');
 
   // Default tasks
-  grunt.registerTask('build', ['jshint','uglify:dev','imagemin','svgmin','htmlmin:dev','compass']);
+  grunt.registerTask('build', ['jshint','newer:uglify:dev','compass']);
   grunt.registerTask('prod', ['imagemin','svgmin','compass','cssmin','uglify:prod','htmlmin:prod']);
+
+  grunt.registerTask('images', [], function () {
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
+    grunt.loadNpmTasks('grunt-svgmin');
+    grunt.task.run('newer:imagemin','newer:svgmin');
+});
 
   // Custom tasks
   grunt.registerTask("validate", ['validation']);
   grunt.registerTask("img", ['imagemin','svgmin']);
 
+  //watchs
+  grunt.registerTask('watchSetBuild', ['watch:set1','watch:set2']);
+
 
   // run grunt watch to run build every time a file changes
-  grunt.event.on('watch', function(action, filepath) {
-    grunt.log.writeln(filepath + ' has ' + action);
-  });
+  // grunt.event.on('watch', function(action, filepath) {
+  //   grunt.log.writeln(filepath + ' has ' + action);
+  // });
 
 };
