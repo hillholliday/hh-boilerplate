@@ -140,6 +140,9 @@ module.exports = function(grunt) {
           },
         },
       }
+      concurrent:{
+          target1: ['jshunt','newer:uglify:dev','compass']
+      }
   });
 
   grunt.loadNpmTasks('grunt-contrib-compass');
@@ -150,10 +153,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-html-validation');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-newer');
 
   // Default tasks
-  grunt.registerTask('build', ['jshint','newer:uglify:dev','compass']);
+  grunt.registerTask('build', ['concurrent:target1');
   grunt.registerTask('prod', ['imagemin','svgmin','compass','cssmin','uglify:prod','htmlmin:prod']);
 
   grunt.registerTask('images', [], function () {

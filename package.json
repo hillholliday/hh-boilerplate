@@ -24,7 +24,9 @@
     "yeoman-generator": "~0.14.0"
   },
   "devDependencies": {
-    "mocha": "~1.14.0"
+    "mocha": "~1.14.0",
+    "grunt": "~0.4.2",
+    "grunt-concurrent": "~0.4.3"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
