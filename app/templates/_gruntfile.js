@@ -139,9 +139,9 @@ module.exports = function(grunt) {
             spawn: false
           },
         },
-      }
+      },
       concurrent:{
-          target1: ['jshunt','newer:uglify:dev','compass']
+          target1: ['jshint','newer:uglify:dev','compass']
       }
   });
 
