@@ -124,7 +124,7 @@ module.exports = function(grunt) {
 
       watch: {
         set1: {
-          files: ['build/js/*.js', 'build/sass/**/*.scss', 'build/img/**/*.png','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg','build/**/*.html'],
+          files: ['build/js/*.js', 'build/sass/**/*.scss', 'build/img/**/*.png','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg','html/**/*.html'],
           tasks: ['build'],
           options: {
             livereload : true,
@@ -140,9 +140,6 @@ module.exports = function(grunt) {
           },
         },
       }
-      concurrent:{
-          target1: ['jshunt','newer:uglify:dev','compass']
-      }
   });
 
   grunt.loadNpmTasks('grunt-contrib-compass');
@@ -156,15 +153,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-newer');
 
-  // Default tasks
-  grunt.registerTask('build', ['concurrent:target1');
-  grunt.registerTask('prod', ['imagemin','svgmin','compass','cssmin','uglify:prod','htmlmin:prod']);
-
   grunt.registerTask('images', [], function () {
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-svgmin');
     grunt.task.run('newer:imagemin','newer:svgmin');
-});
+  });
+
+  // Default tasks
+  grunt.registerTask('build', ['images','compass','jshint','uglify:dev');
+  grunt.registerTask('prod', ['imagemin','svgmin','compass','cssmin','uglify:prod','htmlmin:prod']);
+  
 
   // Custom tasks
   grunt.registerTask("validate", ['validation']);

@@ -20,7 +20,7 @@ $font-serif: georgia;
 /*//////////////////////////////////////
 //  extension on skeleton
 //////////////////////////////////////*/
-$grid-columns: 10;
+$grid-columns: 12;
 $width: 60rem;
 $font-size:10;
 $paragraph-size:1.6;
@@ -64,15 +64,10 @@ input:focus, textarea:focus{
 }
 
 @mixin input-placeholder {
-    @if $experimental-support-for-webkit {
-        &::-webkit-input-placeholder { @content; }
-    }
-    @if $experimental-support-for-mozilla {
-        &:-moz-placeholder { @content; }
-    }
-    @if $experimental-support-for-microsoft {
-        &:-ms-input-placeholder { @content; }
-    }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; } 
 }
 
 @mixin animation($params) {
