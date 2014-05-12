@@ -160,9 +160,9 @@ module.exports = function(grunt) {
   });
 
   // Default tasks
-  grunt.registerTask('build', ['images','compass','jshint','uglify:dev');
+  grunt.registerTask('build', ['images','compass','jshint','uglify:dev']);
   grunt.registerTask('prod', ['imagemin','svgmin','compass','cssmin','uglify:prod','htmlmin:prod']);
-  
+
 
   // Custom tasks
   grunt.registerTask("validate", ['validation']);
