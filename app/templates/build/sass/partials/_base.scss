@@ -21,7 +21,8 @@ $font-serif: georgia;
 //  extension on skeleton
 //////////////////////////////////////*/
 $grid-columns: 12;
-$width: 60rem;
+$width:1200px;
+$max-width:1200px;
 $font-size:10;
 $paragraph-size:1.6;
 
@@ -104,6 +105,20 @@ input:focus, textarea:focus{
 %cover{
     background-size: cover;
     -ms-behavior: url(/js/vendor/backgroundsize.min.htc);
+}
+
+%default-transition{
+    @include transition(all .3s ease-in-out);
+}
+
+%middle{
+    @include position(relative, 50% 0 0 0);
+    @include transform(translateY(-50%));
+}
+
+%absolute-middle{
+    @include position(absolute, 50% 0 0 50%);
+    @include transform(translateY(-50%) translateX(-50%));
 }
 
 body,html{
