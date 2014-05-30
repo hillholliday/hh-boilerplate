@@ -1,7 +1,7 @@
 {
-  "name": "erskineplate",
+  "name": "boilerplate",
   "version": "0.0.0",
-  "description": "erskineplate",
+  "description": "boilerplate",
   "main": "/js/main.js",
   "repository": {
     "type": "git",

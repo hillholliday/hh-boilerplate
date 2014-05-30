@@ -4,7 +4,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 
 
-var ErskineplateGenerator = module.exports = function ErskineplateGenerator(args, options, config) {
+var BoilerplateGenerator = module.exports = function BoilerplateGenerator(args, options, config) {
   yeoman.generators.Base.apply(this, arguments);
 
   this.on('end', function () {
@@ -14,9 +14,9 @@ var ErskineplateGenerator = module.exports = function ErskineplateGenerator(args
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 };
 
-util.inherits(ErskineplateGenerator, yeoman.generators.Base);
+util.inherits(BoilerplateGenerator, yeoman.generators.Base);
 
-ErskineplateGenerator.prototype.askFor = function askFor() {
+BoilerplateGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
   // have Yeoman greet the user.
@@ -34,7 +34,7 @@ ErskineplateGenerator.prototype.askFor = function askFor() {
   }.bind(this));
 };
 
-ErskineplateGenerator.prototype.app = function app() {
+BoilerplateGenerator.prototype.app = function app() {
   this.copy('_package.json', 'package.json');
   this.copy('_config.rb', 'config.rb');
   this.copy('_gruntfile.js', 'gruntfile.js');
@@ -43,7 +43,7 @@ ErskineplateGenerator.prototype.app = function app() {
   this.template('_README.md', 'README.json');
 };
 
-ErskineplateGenerator.prototype.projectfiles = function projectfiles() {
+BoilerplateGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
 };

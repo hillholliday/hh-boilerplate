@@ -4,5 +4,5 @@ node_js:
   - '0.10'
 before_install:
   - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-erskineplate' ]; then cd .. && eval "mv $currentfolder generator-erskineplate" && cd generator-erskineplate; fi
+  - if [ "$currentfolder" != 'generator-boilerplate' ]; then cd .. && eval "mv $currentfolder generator-boilerplate" && cd generator-boilerplate; fi
 
