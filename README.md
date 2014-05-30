@@ -1,3 +1,3 @@
 #erskineplate generator
 
-yo erskineplate
+yo boilerplate
