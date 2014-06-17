@@ -51,6 +51,10 @@ input:focus, textarea:focus{
     outline:none;
 }
 
+button,input[type="submit"]{
+    cursor:pointer;
+}
+
 /*//////////////////////////////////////
 //  mixins
 //////////////////////////////////////*/
@@ -112,12 +116,12 @@ input:focus, textarea:focus{
 }
 
 %middle{
-    @include position(relative, 50% 0 0 0);
+    @include position(relative, 50% auto auto auto);
     @include transform(translateY(-50%));
 }
 
 %absolute-middle{
-    @include position(absolute, 50% 0 0 50%);
+    @include position(absolute, 50% auto auto 50%);
     @include transform(translateY(-50%) translateX(-50%));
 }
 
