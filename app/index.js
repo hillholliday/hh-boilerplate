@@ -53,7 +53,7 @@ BoilerplateGenerator.prototype.app = function app() {
   this.copy('_gruntfile.js', 'gruntfile.js');
   this.directory('build','build');
   this.directory('html','html');
-  this.template('_README.md', 'README.json');
+  this.template('_README.md', 'README.md');
 };
 
 BoilerplateGenerator.prototype.projectfiles = function projectfiles() {
