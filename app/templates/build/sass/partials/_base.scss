@@ -40,7 +40,7 @@ $paragraph-size:1.6;
 }
 
 b,strong{
-    font-weight:600;
+    font-weight:700;
 }
 
 i,em{
@@ -73,20 +73,6 @@ button,input[type="submit"]{
     &::-moz-placeholder { @content; }
     &:-ms-input-placeholder { @content; }
     &::-webkit-input-placeholder { @content; } 
-}
-
-@mixin animation($params) {
-    -webkit-animation:$params;
-    -moz-animation:$params;
-    -ms-animation:$params;
-    animation:$params;
-}
-
-@mixin keyframes($name) {
-    @-webkit-keyframes $name { @content }
-    @-moz-keyframes    $name { @content }
-    @-ms-keyframes     $name { @content }
-    @keyframes         $name { @content }
 }
 
 

@@ -16,11 +16,24 @@ var BoilerplateGenerator = module.exports = function BoilerplateGenerator(args, 
 
 util.inherits(BoilerplateGenerator, yeoman.generators.Base);
 
+BoilerplateGenerator.prototype.welcome = function welcome() {
+    this.log(
+        '\n' +
+        '\n' +
+        '    ____          _  __                    __        __       ' + '\n' +
+        '   / __ ) ____   (_)/ /___   _____ ____   / /____ _ / /_ ___  ' + '\n' +
+        '  / __  |/ __ \\ / // // _ \\ / ___// __ \\ / // __ `// __// _ \\ ' + '\n' +
+        ' / /_/ // /_/ // // //  __// /   / /_/ // // /_/ // /_ /  __/ ' + '\n' +
+        '/_____/ \\____//_//_/ \\___//_/   / .___//_/ \\__,_/ \\__/ \\___/  ' + '\n' +
+        'for creating static sites using compass, scss, bourbon,       ' + '\n' +
+        'jquery, grunt and html5 goodness.' +
+        '\n' + 
+        '\n'
+    );
+};
+
 BoilerplateGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
-
-  // have Yeoman greet the user.
-  console.log(this.yeoman);
 
   var prompts = [{
     name: 'projectName',
