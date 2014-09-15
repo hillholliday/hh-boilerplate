@@ -111,6 +111,12 @@ button,input[type="submit"]{
     @include transform(translateY(-50%) translateX(-50%));
 }
 
+%hide-text{
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 body,html{
     display:block;
     height:100%;
