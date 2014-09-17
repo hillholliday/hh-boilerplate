@@ -35,7 +35,7 @@ $(function(){
 	/////////////////////////*/
 	var popupWindow = function(){
 		$("a[data-popup]").on("click", function(event){
-			event.preventDefault():
+			event.preventDefault();
 			window.open($(this)[0].href);
 		});
 	};
