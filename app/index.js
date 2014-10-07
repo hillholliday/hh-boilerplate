@@ -17,7 +17,7 @@ var BoilerplateGenerator = module.exports = function BoilerplateGenerator(args, 
 util.inherits(BoilerplateGenerator, yeoman.generators.Base);
 
 BoilerplateGenerator.prototype.welcome = function welcome() {
-    this.log(
+      this.log(
         '\n' +
         '\n' +
         '    ____          _  __                    __        __       ' + '\n' +
