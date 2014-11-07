@@ -126,9 +126,10 @@ module.exports = function(grunt) {
         main:{
           files:[
             {
-              expand: true, 
-              src: ['build/js/*'], 
-              dest: 'html/js/', 
+              expand: true,
+              flatten: true,
+              src: ['build/js/**'], 
+              dest: 'html/js/',
               filter:'isFile'},
           ],
         },
