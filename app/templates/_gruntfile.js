@@ -122,23 +122,45 @@ module.exports = function(grunt) {
         }
       },
 
+      copy: { 
+        main:{
+          files:[
+            {
+              expand: true, 
+              src: ['build/js/*'], 
+              dest: 'html/js/', 
+              filter:'isFile'},
+          ],
+        },
+      },
+
       watch: {
-        set1: {
-          files: ['build/js/*.js', 'build/sass/**/*.scss', 'build/img/**/*.png','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg','html/**/*.html'],
+        options: {
+          livereload: true,
+        },
+        html:{
+          files: ['html/**/*.html','craft/**/*.html'],
           tasks: ['build'],
-          options: {
-            livereload : true,
-            spawn: false
-          },
         },
-        set2:{
-          files: ['build/img/**/*.png','build/img/**/*.jpg','build/img/**/*.gif','build/img/**/*.svg'],
+        js:{
+          files: ['build/**/*.js'],
+          tasks: ['jshint','copy'],
+        },
+        sass:{
+          options:{
+            livereload: false,
+          },
+          files: ['build/sass/**/*.scss'],
+          tasks: ['compass'],
+        },
+        img:{
+          files: ['build/img/**/*.img'],
           tasks: ['images'],
-          options: {
-            livereload : true,
-            spawn: false
-          },
         },
+        css:{
+          files: ['html/stylesheets/**/*.css'],
+          tasks:[],
+        }
       }
   });
 
@@ -151,6 +173,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-html-validation');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-newer');
 
   grunt.registerTask('images', [], function () {
