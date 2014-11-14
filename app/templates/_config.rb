@@ -15,6 +15,8 @@ javascripts_dir = "html/js"
 relative_assets = true
 http_images_dir = "html/img"
 
+sourcemap = true
+
 # To disable debugging comments that display the original location of your selectors. Uncomment:
 # line_comments = false
 
