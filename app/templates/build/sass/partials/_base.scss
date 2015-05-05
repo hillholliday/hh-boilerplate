@@ -52,7 +52,7 @@ i,em{
     font-style:italic;
 }
 
-input:focus, textarea:focus{
+input:focus, textarea:focus,button,input[type="submit"]{
     outline:none;
 }
 
@@ -63,15 +63,6 @@ button,input[type="submit"]{
 /*//////////////////////////////////////
 //  mixins
 //////////////////////////////////////*/
-
-@mixin font-size($size, $line-spacing: 1.3, $letter-spacing: .09){
-    font-size:($size*$font-size) + px;
-    line-height:($size*$line-spacing) + px;
-
-    font-size:($size) + rem;
-    line-height:($size*$line-spacing) + rem;
-    // letter-spacing:($letter-spacing) + rem;
-}
 
 @mixin input-placeholder {
     &:-moz-placeholder { @content; }
@@ -121,6 +112,20 @@ button,input[type="submit"]{
     white-space: nowrap;
     overflow: hidden;
 }
+
+%opacity0{
+    @include opacity(0);
+}
+
+%opacity1{
+    @include opacity(1);
+}
+
+%psuedo-content{
+    content:" ";
+    display:block;
+}
+
 
 body,html{
     display:block;
