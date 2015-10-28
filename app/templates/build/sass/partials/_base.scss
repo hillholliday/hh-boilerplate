@@ -38,8 +38,6 @@ $font-serif: georgia;
 $grid-columns: 12;
 $width:1200px;
 $max-width:1200px;
-$font-size:10;
-$paragraph-size:1.6;
 
 *{
     @include box-sizing(border-box);
@@ -60,6 +58,10 @@ b,strong{
 
 i,em{
     font-style:italic;
+}
+
+input,button{
+    @include appearance(none);
 }
 
 input:focus, textarea:focus,button,input[type="submit"]{

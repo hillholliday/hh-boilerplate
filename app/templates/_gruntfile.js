@@ -135,6 +135,76 @@ module.exports = function(grunt) {
         },
       },
 
+      modernizr: {
+        dist:{
+          "dest": "html/js/modernizr.js",
+          "minify": true,
+          "options": [
+            "setClasses"
+          ],
+          "feature-detects": [
+            "test/audio",
+            "test/canvas",
+            "test/emoji",
+            "test/fullscreen-api",
+            "test/geolocation",
+            "test/hashchange",
+            "test/input",
+            "test/json",
+            "test/notification",
+            "test/svg",
+            "test/touchevents",
+            "test/vibration",
+            "test/video",
+            "test/web-intents",
+            "test/webanimations",
+            "test/webgl",
+            "test/a/download",
+            "test/audio/preload",
+            "test/battery/lowbattery",
+            "test/css/animations",
+            "test/css/appearance",
+            "test/css/backgroundcliptext",
+            "test/css/backgroundrepeat",
+            "test/css/backgroundsize",
+            "test/css/backgroundsizecover",
+            "test/css/borderradius",
+            "test/css/boxshadow",
+            "test/css/boxsizing",
+            "test/css/calc",
+            "test/css/flexbox",
+            "test/css/gradients",
+            "test/css/lastchild",
+            "test/css/mediaqueries",
+            "test/css/multiplebgs",
+            "test/css/opacity",
+            "test/css/pointerevents",
+            "test/css/rgba",
+            "test/css/scrollbars",
+            "test/css/transforms",
+            "test/css/transitions",
+            "test/css/userselect",
+            "test/css/vhunit",
+            "test/css/vwunit",
+            "test/elem/time",
+            "test/event/deviceorientation-motion",
+            "test/file/api",
+            "test/file/filesystem",
+            "test/forms/fileinput",
+            "test/forms/validation",
+            "test/img/sizes",
+            "test/img/srcset",
+            "test/storage/localstorage",
+            "test/storage/sessionstorage",
+            "test/svg/asimg",
+            "test/svg/clippaths",
+            "test/svg/filters",
+            "test/svg/inline",
+            "test/url/data-uri"
+          ]
+        }
+      },
+
       watch: {
         options: {
           livereload: true,
@@ -175,6 +245,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks("grunt-modernizr");
   grunt.loadNpmTasks('grunt-newer');
 
   grunt.registerTask('images', [], function () {
@@ -185,7 +256,7 @@ module.exports = function(grunt) {
 
   // Default tasks
   grunt.registerTask('build', ['images','compass','jshint','uglify:dev']);
-  grunt.registerTask('prod', ['imagemin','svgmin','compass','cssmin','uglify:prod','htmlmin:prod']);
+  grunt.registerTask('prod', ['imagemin','svgmin','compass','cssmin','uglify:prod','htmlmin:prod','modernzir:dist']);
 
 
   // Custom tasks

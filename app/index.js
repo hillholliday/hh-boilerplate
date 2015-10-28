@@ -35,14 +35,20 @@ BoilerplateGenerator.prototype.welcome = function welcome() {
 BoilerplateGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
-  var prompts = [{
-    name: 'projectName',
-    message: 'What would you like to name this project?',
-  }];
+  var prompts = [
+    {
+      name: 'projectName',
+      message: 'What would you like to name this project?',
+    },
+    {
+      name: 'projectDesc',
+      message: 'What should the description be for this project?',
+    }
+  ];
 
   this.prompt(prompts, function (props) {
     this.projectName = props.projectName;
-
+    this.projectDesc = props.projectDesc;
     cb();
   }.bind(this));
 };
@@ -54,6 +60,7 @@ BoilerplateGenerator.prototype.app = function app() {
   this.directory('build','build');
   this.directory('html','html');
   this.template('_README.md', 'README.md');
+  this.template('_index.html', 'html/index.html');
 };
 
 BoilerplateGenerator.prototype.projectfiles = function projectfiles() {

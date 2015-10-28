@@ -40,4 +40,10 @@ $(function(){
 		});
 	};
 	popupWindow();
+
+	var popItUp = function(url,height,width) {
+        newwindow=window.open(url,'name','height='+height+',width='+width);
+        if (window.focus) {newwindow.focus();}
+        return false;
+    };
 });

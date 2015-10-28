@@ -1,12 +1,9 @@
-<%= projectName %>
+#<%= projectName %>
 
-Personal boilerplate for creating static sites using compass, scss, bourbon, jquery, grunt and html5 goodness.
+<%= projectDesc %>
 
-## let's do work
+### let's do work
 1.  only edit build/* files
 2.  npm install grunt
 3.  npm install
 4.  grunt watch
-5.  taaaa daaaaaaa
-
-###### swag
