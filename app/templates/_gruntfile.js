@@ -110,25 +110,13 @@ module.exports = function(grunt) {
           }
         }
       },
-
-      validation: {
-        options: {
-                reset: grunt.option('reset') || false,
-                stoponerror: false,
-                relaxerror: ["Bad value X-UA-Compatible for attribute http-equiv on element meta."]
-        },
-        files: {
-                src: ['html/**/*.html','! node_modules/**/*.html']
-        }
-      },
-
-      copy: { 
+      copy: {
         main:{
           files:[
             {
               expand: true,
               flatten: true,
-              src: ['build/js/**'], 
+              src: ['build/js/**'],
               dest: 'html/js/',
               filter:'isFile'},
           ],

@@ -1,40 +1,40 @@
 {
-  "name": "generator-boilerplate",
-  "version": "0.0.1",
+  "name": "hh-boilerplate",
+  "version": "1.0.0",
   "description": "A generator for Yeoman",
   "keywords": [
-    "yeoman-generator"
+    "hh-generator"
   ],
-  "homepage": "https://github.com/RobErskine/generator-erskineplate",
-  "bugs": "https://github.com/RobErskine/generator-erskineplate/issues",
+  "homepage": "https://github.com/hillholliday/hh-boilerplate",
+  "bugs": "https://github.com/hillholliday/hh-boilerplate/issues",
   "author": {
-    "name": "Rob",
-    "email": "rob@roberskine.com",
-    "url": "https://github.com/RobErskine"
+    "name": "Hill Holliday",
+    "email": "doit@hhcc.com",
+    "url": "https://github.com/hillholliday/"
   },
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/roberskine/generator-erskineplate.git"
+    "url": "git@github.com:hillholliday/hh-boilerplate.git"
   },
   "scripts": {
     "test": "mocha"
   },
   "dependencies": {
-    "yeoman-generator": "~0.14.0"
+    "yeoman-generator": "~0.2.0"
   },
   "devDependencies": {
-    "mocha": "~1.14.0",
-    "grunt": "~0.4.2",
-    "grunt-concurrent": "~0.4.3",
-    "grunt-contrib-copy": "~0.7.0"
+    "mocha": "^2.0.0",
+    "grunt": "^1.0.0",
+    "grunt-concurrent": "^2.0.0",
+    "grunt-contrib-copy": "^1.0.0"
   },
   "peerDependencies": {
-    "yo": ">=1.0.0"
+    "yo": ">=1.5.0"
   },
   "engines": {
-    "node": ">=0.8.0",
-    "npm": ">=1.2.10"
+    "node": ">=5.0.0",
+    "npm": ">=3.0.0"
   },
   "licenses": [
     {
