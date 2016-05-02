@@ -229,7 +229,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
-  grunt.loadNpmTasks('grunt-html-validation');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-copy');
@@ -248,7 +247,6 @@ module.exports = function(grunt) {
 
 
   // Custom tasks
-  grunt.registerTask("validate", ['validation']);
   grunt.registerTask("img", ['imagemin','svgmin']);
 
   //watchs
