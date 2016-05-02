@@ -1,4 +1,4 @@
-#Generator Boilerplate
+#HH Boilerplate
 
 Simple boilerplate to uphold best practices within the HHCC Dept of Innovation and Technology.
 
@@ -14,9 +14,9 @@ Uses the latest builds of compass, bourbon, scss, jquery, modernizr, and grunt t
 
 
 ## Building
-1. Only edit assets (scss, img, and js) within the build directory
+1. Only edit files in `build/js` and `build/sass`. For assets place images in `build/img` and any SVG in `build/svg`.
 2. `$ npm install grunt` - if you haven't already
 3. `$ npm install` - will loop through package.json and install all depencies
 4. `$ grunt watch` - this will run through tasks within the gruntfile whenever a change is made
 	- for example if a js file is modified, jslint (for errors) and copy (moved to html/ on successful lint) will be run
- 
+

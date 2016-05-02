@@ -83,9 +83,9 @@ module.exports = function(grunt) {
         dev: {                     // Target
             files: [{               // Dictionary of files
                 expand: true,       // Enable dynamic expansion.
-                cwd: 'build/img',     // Src matches are relative to this path.
+                cwd: 'build/svg',     // Src matches are relative to this path.
                 src: ['**/*.svg'],  // Actual pattern(s) to match.
-                dest: 'html/img/',       // Destination path prefix.
+                dest: 'html/svg/',       // Destination path prefix.
                 ext: '.svg'     // Dest filepaths will have this extension.
                 // ie: optimise img/src/branding/logo.svg and store it in img/branding/logo.min.svg
             }]
