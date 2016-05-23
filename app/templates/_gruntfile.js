@@ -1,9 +1,23 @@
-module.exports = function(grunt) {
+'use strict';
 
+module.exports = function(grunt) {
+  console.log(grunt);
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    <% if (useES6) { %>
+      babel: {
+        options: {
+          sourceMap: true
+        },
+        dist: {
+          files: {
+            "html/js/main.js" : "build/babel/script.js"
+          }
+        }
+      },
+    <% } %>
       uglify: {
         dev: {
           options: {
@@ -122,74 +136,94 @@ module.exports = function(grunt) {
           ],
         },
       },
-
+      <% if (useES6) { %>
+      concat: {
+        options: {
+          seperator: ';',
+        },
+        dist: {
+          // You must add files as you create them manually, (dynamic version in the works)
+          src: ['node_modules/babel-polyfill/dist/polyfill.min.js','build/js/main.js'],
+          dest: 'build/babel/script.js'
+        }
+      },
+      <% } %>
       modernizr: {
         dist:{
           "dest": "html/js/modernizr.js",
           "minify": true,
+          "outputFile": "html/js/vendor/modernizr.js",
+          "crawl": false,
           "options": [
             "setClasses"
           ],
-          "feature-detects": [
-            "test/audio",
-            "test/canvas",
-            "test/emoji",
-            "test/fullscreen-api",
-            "test/geolocation",
-            "test/hashchange",
-            "test/input",
-            "test/json",
-            "test/notification",
-            "test/svg",
-            "test/touchevents",
-            "test/vibration",
-            "test/video",
-            "test/web-intents",
-            "test/webanimations",
-            "test/webgl",
-            "test/a/download",
-            "test/audio/preload",
-            "test/battery/lowbattery",
-            "test/css/animations",
-            "test/css/appearance",
-            "test/css/backgroundcliptext",
-            "test/css/backgroundrepeat",
-            "test/css/backgroundsize",
-            "test/css/backgroundsizecover",
-            "test/css/borderradius",
-            "test/css/boxshadow",
-            "test/css/boxsizing",
-            "test/css/calc",
-            "test/css/flexbox",
-            "test/css/gradients",
-            "test/css/lastchild",
-            "test/css/mediaqueries",
-            "test/css/multiplebgs",
-            "test/css/opacity",
-            "test/css/pointerevents",
-            "test/css/rgba",
-            "test/css/scrollbars",
-            "test/css/transforms",
-            "test/css/transitions",
-            "test/css/userselect",
-            "test/css/vhunit",
-            "test/css/vwunit",
-            "test/elem/time",
-            "test/event/deviceorientation-motion",
-            "test/file/api",
-            "test/file/filesystem",
-            "test/forms/fileinput",
-            "test/forms/validation",
-            "test/img/sizes",
-            "test/img/srcset",
-            "test/storage/localstorage",
-            "test/storage/sessionstorage",
-            "test/svg/asimg",
-            "test/svg/clippaths",
-            "test/svg/filters",
-            "test/svg/inline",
-            "test/url/data-uri"
-          ]
+          "tests": [
+             "audio",
+            "canvas",
+            "emoji",
+            "fullscreen",
+            "geolocation",
+            "hashchange",
+            "input",
+            "json",
+            "notification",
+            "svg",
+            "touchevents",
+            "vibrate",
+            "video",
+            "getusermedia",
+            "webintents",
+            "animation",
+            "webgl",
+            "adownload",
+            "audiopreload",
+            "lowbattery",
+            "cssanimations",
+            "appearance",
+            "backgroundcliptext",
+            [
+              "bgrepeatspace",
+              "bgrepeatround"
+            ],
+            "backgroundsize",
+            "bgsizecover",
+            "borderradius",
+            "boxshadow",
+            "boxsizing",
+            "csscalc",
+            "flexbox",
+            "cssgradients",
+            "lastchild",
+            "mediaqueries",
+            "multiplebgs",
+            "opacity",
+            "csspointerevents",
+            "rgba",
+            "cssscrollbar",
+            "csstransforms",
+            "csstransitions",
+            "userselect",
+            "cssvhunit",
+            "cssvwunit",
+            "time",
+            [
+              "devicemotion",
+              "deviceorientation"
+            ],
+            "filereader",
+            "filesystem",
+            "fileinput",
+            "formvalidation",
+            "sizes",
+            "srcset",
+            "localstorage",
+            "sessionstorage",
+            "svgasimg",
+            "svgclippaths",
+            "svgfilters",
+            "inlinesvg",
+            "datauri"
+          ],
         }
       },
 
@@ -203,7 +237,11 @@ module.exports = function(grunt) {
         },
         js:{
           files: ['build/**/*.js'],
+          <% if (useES6) { %>
+          tasks: ['jshint','concat','babel'],
+          <% } else { %>
           tasks: ['jshint','copy'],
+          <% } %>
         },
         sass:{
           options:{

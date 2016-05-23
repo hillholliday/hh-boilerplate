@@ -27,7 +27,7 @@ BoilerplateGenerator.prototype.welcome = function welcome() {
         '/_____/ \\____//_//_/ \\___//_/   / .___//_/ \\__,_/ \\__/ \\___/  ' + '\n' +
         'for creating static sites using compass, scss, bourbon,       ' + '\n' +
         'jquery, grunt and html5 goodness.' +
-        '\n' + 
+        '\n' +
         '\n'
     );
 };
@@ -43,27 +43,41 @@ BoilerplateGenerator.prototype.askFor = function askFor() {
     {
       name: 'projectDesc',
       message: 'What should the description be for this project?',
+    },
+    {
+      name: 'useES6',
+      message: 'Would you like to use ES6? (Y/n)',
     }
   ];
 
   this.prompt(prompts, function (props) {
+    this.useES6 = false;
     this.projectName = props.projectName;
     this.projectDesc = props.projectDesc;
+    // Catch if people use lower or upper case Y
+    if (props.useES6 === "Y" || props.useES6 === "y") {
+      this.useES6 = true;
+    }
     cb();
   }.bind(this));
 };
 
 BoilerplateGenerator.prototype.app = function app() {
-  this.copy('_package.json', 'package.json');
   this.copy('_config.rb', 'config.rb');
-  this.copy('_gruntfile.js', 'gruntfile.js');
   this.directory('build','build');
   this.directory('html','html');
   this.template('_README.md', 'README.md');
   this.template('_index.html', 'html/index.html');
+
+  // Templating Gruntfile in order to add or remove ES6 related tasks
+  this.template('_gruntfile.js', 'gruntfile.js');
+  this.template('_package.json', 'package.json');
 };
 
 BoilerplateGenerator.prototype.projectfiles = function projectfiles() {
   this.copy('editorconfig', '.editorconfig');
   this.copy('jshintrc', '.jshintrc');
+  if (this.useES6) {
+    this.copy('babelrc', '.babelrc');
+  }
 };
