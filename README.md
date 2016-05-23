@@ -20,3 +20,6 @@ Uses the latest builds of compass, bourbon, scss, jquery, modernizr, and grunt t
 4. `$ grunt watch` - this will run through tasks within the gruntfile whenever a change is made
 	- for example if a js file is modified, jslint (for errors) and copy (moved to html/ on successful lint) will be run
 
+## Customizing (Post-Scaffold)
+- You can further customize Modernizr by supplying more features to detect for within the `tests` array in the gruntfile. Then run `grunt modernizr` to generate a new file!
+
